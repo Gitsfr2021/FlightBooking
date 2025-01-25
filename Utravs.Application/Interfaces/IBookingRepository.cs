@@ -6,5 +6,7 @@ namespace Utravs.Application.Interfaces
     {
         Task<bool> CreateBookingAsync(BookingDTO bookingDto);
         Task<List<BookingDTO>> GetBookingsByFlightIdAsync(long flightId);
+        Task<BookingDTO> GetBookingFlightIdAsync(long flightId);
+        Task<BookingDTO> GetBookingByFlightAndSeatAsync(long flightId, string seatNumber);
     }
 }

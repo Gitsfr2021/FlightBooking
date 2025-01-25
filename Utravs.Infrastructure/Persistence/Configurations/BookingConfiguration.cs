@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
 using Utravs.Core.Entities.CMS;
 
 
@@ -27,6 +28,10 @@ namespace Utravs.Infrastructure.Persistence.Configurations
                 builder.HasOne(b => b.Passenger)
                        .WithMany(p => p.Bookings)
                        .HasForeignKey(b => b.PassengerId);
+
+                builder.HasIndex(b => new { b.FlightId, b.SeatNumber })
+                      .IsUnique()
+                      .HasDatabaseName("Unique_Seat_Flight");
 
             }
         }

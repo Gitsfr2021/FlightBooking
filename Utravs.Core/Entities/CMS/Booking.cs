@@ -9,6 +9,7 @@ namespace Utravs.Core.Entities.CMS
         public Int64 PassengerId { get; set; }
         public DateTime BookingDate { get; set; }
         public string SeatNumber { get; set; }
+
         #endregion
 
         #region Relation
