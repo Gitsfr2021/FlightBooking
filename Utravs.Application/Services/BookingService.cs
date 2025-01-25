@@ -26,6 +26,18 @@ namespace Utravs.Application.Services
                 _semaphore.Release();
             }
         }
+
+        public async Task<List<BookingDTO>> GetBookingsWithLazyLoadingAsync(long flightId)
+        {
+            var bookings = await _bookingRepository.GetBookingsByFlightIdAsync(flightId);
+
+            foreach (var booking in bookings)
+            {
+                var passengerName = booking.PassengerName; 
+            }
+
+            return bookings;
+        }
     }
 
 }

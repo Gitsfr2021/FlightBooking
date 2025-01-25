@@ -18,6 +18,7 @@ namespace Utravs.Infrastructure.Persistence.DbContexts
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("Data Source=DESKTOP-4P98T57;User Id=sa;Password=123456;Initial Catalog=UtravsDB;Integrated Security=True;TrustServerCertificate=True;");
+                optionsBuilder.UseLazyLoadingProxies(); 
             }
         }
 

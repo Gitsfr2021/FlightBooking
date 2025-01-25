@@ -12,8 +12,8 @@ namespace Utravs.Core.Entities.CMS
         #endregion
 
         #region Relation
-        public Flight Flight { get; set; } = null!;
-        public Passenger Passenger { get; set; } = null!;
+        public virtual  Flight Flight { get; set; } = null!;
+        public virtual  Passenger Passenger { get; set; } = null!;
         #endregion
     }
 }

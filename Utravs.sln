@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utravs", "Utravs.csproj", "{CAD02869-9F77-44C2-9048-3D9210A163D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utravs", "Utravs.csproj", "{CAD02869-9F77-44C2-9048-3D9210A163D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utravs.Core", "..\Utravs.Core\Utravs.Core.csproj", "{663FC581-40D8-4025-86DA-C91D129E8F2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utravs.Core", "..\Utravs.Core\Utravs.Core.csproj", "{663FC581-40D8-4025-86DA-C91D129E8F2D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utravs.Application", "..\Utravs.Application\Utravs.Application.csproj", "{7D0555A5-D08F-43D7-A9D3-0C8AF9035407}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utravs.Application", "..\Utravs.Application\Utravs.Application.csproj", "{7D0555A5-D08F-43D7-A9D3-0C8AF9035407}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utravs.Infrastructure", "..\Utravs.Infrastructure\Utravs.Infrastructure.csproj", "{8F5314CF-147A-40F4-B7BA-E78951B3190F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utravs.Infrastructure", "..\Utravs.Infrastructure\Utravs.Infrastructure.csproj", "{8F5314CF-147A-40F4-B7BA-E78951B3190F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utravs.Presentation", "..\Utravs.Presentation\Utravs.Presentation.csproj", "{1905AE90-5FEF-4955-8022-7B0C91C95A5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utravs.Presentation", "..\Utravs.Presentation\Utravs.Presentation.csproj", "{1905AE90-5FEF-4955-8022-7B0C91C95A5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,5 +9,4 @@ namespace Utravs.Application.Interfaces
         Task<IEnumerable<Flight>> GetFlightsAsync(string origin, string destination, DateTime? departureDate);
         Task UpdateAsync(Flight flight);
     }
-
 }

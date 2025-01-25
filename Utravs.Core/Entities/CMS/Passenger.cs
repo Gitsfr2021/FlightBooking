@@ -12,7 +12,7 @@ namespace Utravs.Core.Entities.CMS
         #endregion
 
         #region Relation
-        public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+        public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
         #endregion
     }
 }

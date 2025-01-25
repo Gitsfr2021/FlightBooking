@@ -61,7 +61,8 @@ namespace Utravs.Infrastructure.Repositories
                     FlightId = b.FlightId,
                     PassengerId = b.PassengerId,
                     BookingDate = b.BookingDate,
-                    SeatNumber = b.SeatNumber
+                    SeatNumber = b.SeatNumber   ,
+                    PassengerName = b.Passenger != null ? b.Passenger.FullName : "Unknown" // در اینجا Lazy Loading عمل می‌کند
                 }).ToListAsync();
         }
     }

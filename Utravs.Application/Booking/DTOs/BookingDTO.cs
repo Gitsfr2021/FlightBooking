@@ -7,6 +7,7 @@
         public long PassengerId { get; set; }
         public DateTime BookingDate { get; set; }
         public string SeatNumber { get; set; }
+        public string PassengerName { get; set; }
     }
 
 }

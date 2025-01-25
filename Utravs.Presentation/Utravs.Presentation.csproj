@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Utravs.Application\Utravs.Application.csproj" />
-    <ProjectReference Include="..\Utravs.Infrastructure\Utravs.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
