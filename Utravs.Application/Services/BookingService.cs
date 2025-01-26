@@ -7,8 +7,33 @@ namespace Utravs.Application.Services
     {
         private readonly IBookingRepository _bookingRepository;
         private readonly IFlightRepository _fligtRepository;
-        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+        private readonly SemaphoreSlim _initializationLock = new SemaphoreSlim(1, 1); 
+        private SemaphoreSlim _semaphore;
 
+        private async Task InitializeSemaphoreAsync(long flightId)
+        {
+            if (_semaphore == null)
+            {
+                await _initializationLock.WaitAsync(); 
+                try
+                {
+                    if (_semaphore == null) 
+                    {
+                        var flight = await _fligtRepository.GetByIdAsync(flightId); 
+                        if (flight == null)
+                        {
+                            throw new InvalidOperationException("Flight not found."); 
+                        }
+                     
+                        _semaphore = new SemaphoreSlim(flight.AvailableSeats, flight.AvailableSeats);
+                    }
+                }
+                finally
+                {
+                    _initializationLock.Release(); 
+                }
+            }
+        }
         public BookingService(IBookingRepository bookingRepository, IFlightRepository fligtRepository)
         {
             _bookingRepository = bookingRepository;
@@ -17,6 +42,8 @@ namespace Utravs.Application.Services
 
         public async Task<bool> CreateBookingAsync(BookingDTO bookingDto)
         {
+            await InitializeSemaphoreAsync(bookingDto.FlightId);
+           
             await _semaphore.WaitAsync();
 
             try
@@ -40,7 +67,7 @@ namespace Utravs.Application.Services
                 //  update seat
                 await _fligtRepository.UpdateAsync(flight);
 
-                
+
                 var booking = new BookingDTO
                 {
                     FlightId = bookingDto.FlightId,
@@ -54,9 +81,13 @@ namespace Utravs.Application.Services
 
                 return true;
             }
+            catch (InvalidOperationException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
-                
+
                 throw new Exception("An error occurred while creating the booking.", ex);
             }
             finally
@@ -64,17 +95,22 @@ namespace Utravs.Application.Services
                 _semaphore.Release();
             }
         }
-
-
         public async Task<List<BookingDTO>> GetBookingsWithLazyLoadingAsync(long flightId)
         {
             var bookings = await _bookingRepository.GetBookingsByFlightIdAsync(flightId);
 
             foreach (var booking in bookings)
             {
-                var passengerName = booking.PassengerName; 
+                var passengerName = booking.PassengerName;
             }
 
+            //var passengerNames = await _bookingRepository.GetBookingsByFlightIdAsync(flightId).Select(booking => booking.PassengerName).ToListAsync();
+            //var tasks = bookings.Select(async booking =>
+            //{
+            //    var passengerName = booking.PassengerName;
+            //    await SomeAsyncOperation(booking);
+            //}).ToList();
+            /////await Task.WhenAll(tasks);
             return bookings;
         }
     }

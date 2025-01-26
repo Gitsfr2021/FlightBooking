@@ -32,7 +32,7 @@ namespace Utravs.Infrastructure.Repositories
             var query = _dbContext.Passengers.AsNoTracking().AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(fullName))
-                query = query.Where(f => f.FullName == fullName);
+                query = query.Where(f => f.FullName.Contains(fullName));
 
             if (!string.IsNullOrWhiteSpace(email))
                 query = query.Where(f => f.Email == email);

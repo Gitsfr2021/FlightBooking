@@ -94,7 +94,7 @@ namespace Utravs.Infrastructure.Repositories
                     PassengerName = b.Passenger != null ? b.Passenger.FullName : "Unknown" // در اینجا Lazy Loading عمل می‌کند
                 }).ToListAsync();
         }
-        public async Task<BookingDTO> GetBookingFlightIdAsync(long flightId)
+        public async Task<BookingDTO?> GetBookingFlightIdAsync(long flightId)
         {
             return await _context.Bookings
                 .Where(b => b.FlightId == flightId)
@@ -111,7 +111,7 @@ namespace Utravs.Infrastructure.Repositories
         }
 
 
-        public async Task<BookingDTO> GetBookingByFlightAndSeatAsync(long flightId, string seatNumber)
+        public async Task<BookingDTO?> GetBookingByFlightAndSeatAsync(long flightId, string seatNumber)
         {
             return await _context.Bookings
                 .Where(b => b.FlightId == flightId && b.SeatNumber == seatNumber)

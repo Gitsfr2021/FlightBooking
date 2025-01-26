@@ -28,16 +28,24 @@ namespace Utravs.Presentation.Middleware
 
         private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            var code = HttpStatusCode.InternalServerError; // Default to 500 if unexpected
+            var code = HttpStatusCode.InternalServerError; 
             string result;
 
             if (exception is FluentValidation.ValidationException validationException)
             {
-                code = HttpStatusCode.BadRequest; // 400 for validation errors
+                code = HttpStatusCode.BadRequest; 
                 result = JsonConvert.SerializeObject(new
                 {
                     message = "Validation error",
                     errors = validationException.Errors.Select(e => new { e.PropertyName, e.ErrorMessage })
+                });
+            }
+            else if (exception is InvalidOperationException invalidOperationException)
+            {
+                code = HttpStatusCode.BadRequest; 
+                result = JsonConvert.SerializeObject(new
+                {
+                    message = invalidOperationException.Message
                 });
             }
             else
@@ -50,6 +58,7 @@ namespace Utravs.Presentation.Middleware
 
             return context.Response.WriteAsync(result);
         }
+
     }
 
 }

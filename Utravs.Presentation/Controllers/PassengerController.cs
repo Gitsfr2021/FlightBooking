@@ -58,7 +58,7 @@ namespace Utravs.Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetPassenger([FromQuery] string FullName, [FromQuery] string Email, [FromQuery] string PassportNumber)
+        public async Task<IActionResult> GetPassenger([FromQuery] string? FullName, [FromQuery] string? Email, [FromQuery] string? PassportNumber)
         {
             var Passenger = await _mediator.Send(new GetPassengerQuery { FullName = FullName, Email = Email, PassportNumber = PassportNumber });
             return Ok(Passenger);
